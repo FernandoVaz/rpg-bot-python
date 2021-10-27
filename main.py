@@ -23,16 +23,25 @@ def get_quote():
 def get_classes():
   response = requests.get("https://www.dnd5eapi.co/api/classes/")
   json_data = json.loads(response.text)
-  classes = []
+  classes = ""
   for item in json_data['results']:
-    classes.append(item['name'])
+    classes += item['name'] + ", "
 
   return classes
+
+def get_races():
+  response = requests.get("https://www.dnd5eapi.co/api/races/")
+  json_data = json.loads(response.text)
+  races = ""
+  for item in json_data['results']:
+    races += item['name'] + ", "
+
+  return races
 
 @client.event
 async def on_ready():
   print('Logged in as {0.user}.format(client)')
-  print(get_classes())
+  print(get_races())
 
 @client.event
 async def on_message(message):
@@ -40,10 +49,8 @@ async def on_message(message):
   print("bot-channel")
 
   if message.author == client.user:
-    print("teste")
     return
   if str(message.channel) != "bot-channel":
-    print("outro teste")
     return
 
   if db["responding"]:
@@ -51,8 +58,8 @@ async def on_message(message):
     if message.content.startswith('$getClasses'):
       await message.channel.send(get_classes())
 
-    if message.content.startswith("$wizard spells"):
-      print("wizard spells")  
+    if message.content.startswith("$getRaces"):
+       await message.channel.send(get_races())
 
     if message.content.startswith("$bard spells"):
       print("Bard spells")
