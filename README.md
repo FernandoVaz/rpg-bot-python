@@ -4,3 +4,4 @@ This is a python app that calls a DND5e Api to print usefull stuff such as spell
 
 Feel free to fork and make your own!
 
+We're using UptimeRobot with Replit to keep the bot active
