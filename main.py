@@ -97,6 +97,9 @@ async def on_message(message):
     if message.content.startswith("#mameds"):
       await message.channel.send(dnd5erequests.get_mameds())
 
+    if message.content.startswith("#reallyBadNews"):
+      await message.channel.send("https://www.youtube.com/watch?v=J-DFfBUA6vM")
+
 
   
   if message.content.startswith("$responding"):
